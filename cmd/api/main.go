@@ -22,6 +22,9 @@ type config struct {
 	db   struct {
 		dsn string
 	}
+	jwt struct {
+		secret string
+	}
 }
 
 type AppStatus struct {
@@ -41,6 +44,7 @@ func main() {
 	flag.IntVar(&cfg.port, "port", 4000, "Server Port To Listen On")
 	flag.StringVar(&cfg.env, "env", "development", "App Environment : development/production")
 	flag.StringVar(&cfg.db.dsn, "dsn", "postgres://postgres:1234@localhost/go_movies?sslmode=disable", "Postgres Connection String")
+	flag.StringVar(&cfg.jwt.secret, "jwt-secret", "2dce505d96a53c5768052ee90f3df2055657518dad489160df9913f66042e160", "Jwt Secret")
 	flag.Parse()
 
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
